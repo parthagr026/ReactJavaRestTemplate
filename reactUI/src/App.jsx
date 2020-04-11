@@ -65,7 +65,7 @@ class App extends React.Component {
   };
 
   handleNextQues = () => {
-    this.setState({ index: this.state.index + 1 });
+    this.setState({ index: this.state.index + 1, ansGiven: '' });
   };
 
   handleValidateAnswer = () => {
