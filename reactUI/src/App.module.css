@@ -1,0 +1,64 @@
+.rootContainer {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: auto;
+    padding-top: 3rem;
+}
+
+.tableContainer {
+    align-self: center;
+    margin: 1rem;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 2rem;
+}
+
+.textField {
+    width: 40% !important;
+}
+
+.addButton {
+    width: 5rem !important;
+    height: 5rem !important;
+    align-self: center;
+    border-radius: 2rem !important;
+    outline: none !important;
+}
+
+.switchButton {
+    width: 40% !important;
+    align-self: center;
+    margin: 1rem;
+    outline: none !important;
+}
+
+.rowFlex {
+    font-size: 1.25rem;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 1rem;
+}
+
+.title {
+    align-self: center;
+    font-weight: 700;
+    margin-right: 1rem;
+}
+
+.text {
+    align-self: center;
+    font-style: italic;
+    margin-left: 0.5rem;
+}
+
+.button {
+    margin: 1rem !important;
+}
