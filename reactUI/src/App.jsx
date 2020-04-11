@@ -36,18 +36,19 @@ class App extends React.Component {
     index: 0,
     tot: 0,
     quesAsked: "No Ques in DB",
-    ansGiven: "",
+    ansGiven: ""
   };
 
   componentDidMount() {
     axios.get("http://localhost:8080/questions/getAllQuestions").then(res => {
       console.log(res.data);
-      this.setState({ quesList: res.data,tot: res.data.length });
+      this.setState({ quesList: res.data, tot: res.data.length });
     });
 
-    if(this.state.tot != 0)
-    {
-        this.setState({quesAsked: this.state.quesList[this.state.index].question});
+    if (this.state.tot != 0) {
+      this.setState({
+        quesAsked: this.state.quesList[this.state.index].question
+      });
     }
   }
 
@@ -64,22 +65,20 @@ class App extends React.Component {
   };
 
   handleNextQues = () => {
-    this.setState({index: this.state.index + 1});
-  }
+    this.setState({ index: this.state.index + 1 });
+  };
 
   handleValidateAnswer = () => {
-      if(this.state.ansGiven == this.state.quesList[this.state.index].answer){
-          alert('correct ans');
-      }
-      else
-      {
-        alert('wrong ans');
-      }
-  }
+    if (this.state.ansGiven == this.state.quesList[this.state.index].answer) {
+      alert("correct ans");
+    } else {
+      alert("wrong ans");
+    }
+  };
 
   handleSwitchButtonClick = () => {
     if (this.state.mode == 0) {
-      this.setState({ mode: 1, content: "Add Questions",index: 0});
+      this.setState({ mode: 1, content: "Add Questions", index: 0 });
     } else if (this.state.mode == 1) {
       this.setState({ mode: 0, content: "Answer Questions" });
     }
@@ -105,7 +104,7 @@ class App extends React.Component {
           .get("http://localhost:8080/questions/getAllQuestions")
           .then(res => {
             console.log(res.data);
-            this.setState({ quesList: res.data,tot: res.data.length });
+            this.setState({ quesList: res.data, tot: res.data.length });
           });
       })
       .catch(err => {
@@ -116,13 +115,21 @@ class App extends React.Component {
   render() {
     let content = null;
     let Ques = null;
+    let validate = null;
 
-    if(this.state.index >= this.state.tot)
-    {
-        Ques = 'No More Ques Available'
-    }
-    else{
-        Ques = this.state.quesList[this.state.index].question;
+    if (this.state.index >= this.state.tot) {
+      Ques = "No More Ques Available";
+    } else {
+      Ques = this.state.quesList[this.state.index].question;
+      validate = (
+        <Button
+          variant="outlined"
+          className={styles.button}
+          onClick={this.handleValidateAnswer}
+        >
+          Validate Answer
+        </Button>
+      );
     }
 
     if (this.state.mode == 0) {
@@ -187,9 +194,18 @@ class App extends React.Component {
               variant="outlined"
             />
           </div>
-          <div className={styles.rowFlex} style={{justifyContent:'flex-end'}}>
-              <Button variant='outlined' className={styles.button} onClick={this.handleValidateAnswer}>Validate Answer</Button>
-              <Button variant='outlined' className={styles.button} onClick={this.handleNextQues}>Next Question</Button>
+          <div
+            className={styles.rowFlex}
+            style={{ justifyContent: "flex-end" }}
+          >
+            {validate}
+            <Button
+              variant="outlined"
+              className={styles.button}
+              onClick={this.handleNextQues}
+            >
+              Next Question
+            </Button>
           </div>
         </div>
       );
